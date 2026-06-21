@@ -1,20 +1,26 @@
 import { env } from '../config/env.js';
 import type { ModelConfig } from '../lib/models.js';
 
-export const VISION_SYSTEM_PROMPT = `You are a privacy and security analyst. Analyse the provided image and identify every element that could be used to locate or identify the subject. Return ONLY valid JSON in this exact schema — no other text:
+export const VISION_SYSTEM_PROMPT = `You are an extremely meticulous privacy and security analyst. Analyse the provided image and identify absolutely every element that could be used to locate, fingerprint, or identify the subject or the environment.
+
+Be observant: Look for minute reflections in windows or sunglasses, distant street signs, tiny text, reflections, unblurred screens, specific landmarks, unique architecture, or hidden metadata. DO NOT limit yourself to predefined types; if you see anything sensitive, flag it.
+
+Return ONLY valid JSON in this exact schema — no other text:
 
 {
   "risk_level": "low" | "medium" | "high" | "critical",
-  "summary": "<1-2 sentence plain-English summary>",
+  "summary": "<1-2 sentence plain-English summary of what was found>",
   "findings": [
     {
       "type": "street_sign" | "house_number" | "license_plate" | "face" | "school_logo" | "reflection" | "landmark" | "window_view" | "other",
-      "description": "<what you see>",
+      "description": "<exact description of the minute detail>",
       "severity": "low" | "medium" | "high",
-      "rough_location": "top-left" | "top-right" | "center" | "bottom-left" | "bottom-right" | "full-image"
+      "bbox": [x_min, y_min, x_max, y_max]
     }
   ]
-}`;
+}
+
+CRITICAL: For each finding, provide the EXACT bounding box 'bbox' as an array of 4 numbers: [x_min, y_min, x_max, y_max], where coordinates are percentages from 0 to 100 representing the exact location of the sensitive element in the image.`;
 
 const USER_TEXT = 'Analyse this image for privacy vulnerabilities.';
 const MAX_TOKENS = 1024;
