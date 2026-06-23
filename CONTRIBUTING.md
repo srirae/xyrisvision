@@ -8,7 +8,7 @@ Built at **NJx June 2026** · Mission 1.3 — Burn After Reading
 
 > ### 🛠️ Faizan Shaikh
 > * **GitHub:** [@fms39-glitch](https://github.com/fms39-glitch)
-> * **Email:** *Not Provided*
+> * **Email:** *[faizanshaikh2007304@gmail.com](mailto:faizanshaikh2007304@gmail.com)*
 > * **Contributions:** *Pending update*
 
 <br>
